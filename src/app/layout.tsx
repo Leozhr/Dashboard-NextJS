@@ -1,4 +1,5 @@
 import '@radix-ui/themes/styles.css'
+import '@/styles/theme.css'
 import '@/styles/globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
@@ -6,7 +7,10 @@ import { Theme } from '@radix-ui/themes'
 
 import Header from '@/layouts/header'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+})
 
 export const metadata: Metadata = {
   title: 'Dashboard Project',
@@ -20,8 +24,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body className={inter.className}>
-        <Theme>
+      <body className={inter.variable}>
+        <Theme appearance="light" accentColor="iris" radius="large">
           <Header />
           <main className="p-5">{children}</main>
         </Theme>
