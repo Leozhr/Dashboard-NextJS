@@ -1,7 +1,12 @@
+'use client'
 import Link from 'next/link'
+import cn from 'classnames'
 import { Bug } from 'lucide-react'
+import { usePathname } from 'next/navigation'
 
 const Header = () => {
+  const currentPath = usePathname()
+
   const links = [
     { label: 'Dashboard', href: '/' },
     { label: 'Issues', href: '/issues' },
@@ -16,7 +21,11 @@ const Header = () => {
           <li key={link.href}>
             <Link
               href={link.href}
-              className="text-zinc-500 hover:text-zinc-800"
+              className={cn({
+                'text-zinc-900': currentPath === link.href,
+                'text-zinc-500': currentPath !== link.href,
+                'hover:text-zinc-800 transition-colors': true,
+              })}
             >
               {link.label}
             </Link>
